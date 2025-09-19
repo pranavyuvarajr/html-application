@@ -1,132 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 The Big 3 Anime 🌟</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        /* Base & Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Roboto', sans-serif; 
-            background: linear-gradient(to right, #fceabb, #f8b500);
-            color: #333;
-            overflow-x: hidden;
-        }
-        h1, h2 { font-family: 'Press Start 2P', cursive; color: #ff3c6e; text-align: center; }
-        h1 { margin: 2rem 0; font-size: 3rem; text-shadow: 2px 2px 8px #ff9a9e; }
-        h2 { margin: 1.5rem 0; font-size: 1.8rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Anime Showcase 🌟</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+    /* Base Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to right, #f9d423, #ff4e50);
+        color: #fff;
+        min-height: 100vh;
+    }
+    h1 {
+        font-family: 'Press Start 2P', cursive;
+        text-align:center;
+        font-size:3rem;
+        margin:2rem 0;
+        text-shadow: 2px 2px 10px #000;
+    }
 
-        /* Container */
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    /* Container & Grid */
+    .container {
+        width: 95%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
 
-        /* Anime Cards */
-        .anime-card {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .anime-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-        }
-        .anime-card img {
-            width: 300px;
-            border-radius: 15px;
-            margin-right: 2rem;
-            flex-shrink: 0;
-        }
-        .anime-card .content {
-            flex: 1;
-        }
-        .anime-card .content p {
-            margin: 1rem 0;
-            line-height: 1.5;
-            font-size: 1rem;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: #fff;
-            background: #ff6f91;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            background: #ff3c6e;
-            transform: scale(1.05);
-        }
+    /* Anime Card */
+    .anime-card {
+        background: rgba(0,0,0,0.6);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+    .anime-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+    }
+    .anime-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+    .anime-card .content {
+        padding: 1rem;
+    }
+    .anime-card h2 {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #ffcc00;
+        text-shadow: 1px 1px 4px #000;
+    }
+    .anime-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .btn {
+        display: inline-block;
+        margin-top: 0.8rem;
+        padding: 0.5rem 1rem;
+        background: #ff4e50;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .btn:hover {
+        background: #ff6f91;
+        transform: scale(1.05);
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            background: rgba(255,255,255,0.5);
-            border-top: 2px solid #ff6f91;
-        }
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(0,0,0,0.5);
+        border-top: 2px solid #ffcc00;
+    }
 
-        /* Floating Animation */
-        .floating {
-            animation: float 3s ease-in-out infinite alternate;
-        }
-        @keyframes float {
-            from { transform: translateY(0); }
-            to { transform: translateY(-15px); }
-        }
-    </style>
+    /* Floating Sparkles */
+    .sparkle {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+        0%,100% { opacity: 0.8; transform: translateY(0); }
+        50% { opacity: 0; transform: translateY(-20px); }
+    }
+</style>
 </head>
 <body>
-    <h1>🌟 The Big 3 Anime 🌟</h1>
-    <div class="container">
-        
-        <!-- One Piece -->
-        <div class="anime-card floating">
+
+<h1>🌸 Ultimate Anime Showcase 🌸</h1>
+<div class="container">
+    <div class="grid">
+
+        <!-- Example Anime Cards -->
+        <div class="anime-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/6/65/One_Piece_Logo.png" alt="One Piece">
             <div class="content">
                 <h2>One Piece</h2>
-                <p><strong>Genre:</strong> Adventure, Action, Fantasy</p>
-                <p>Follow Monkey D. Luffy and his Straw Hat Pirates on an epic journey to find the legendary treasure, One Piece, and become the Pirate King. This anime is filled with colorful characters, thrilling battles, and heartwarming friendships.</p>
-                <button class="btn" onclick="alert('Welcome to the Grand Line! 🌊')">Explore One Piece</button>
+                <p>Follow Monkey D. Luffy and his crew on an epic adventure to find the legendary treasure.</p>
+                <button class="btn" onclick="alert('Welcome to the Grand Line! 🌊')">Explore</button>
             </div>
         </div>
 
-        <!-- Naruto -->
-        <div class="anime-card floating">
+        <div class="anime-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" alt="Naruto">
             <div class="content">
                 <h2>Naruto</h2>
-                <p><strong>Genre:</strong> Adventure, Ninja, Action</p>
-                <p>Follow Naruto Uzumaki, a young ninja with dreams of becoming the Hokage, as he faces challenges, forms friendships, and battles powerful enemies. The story is rich with ninja techniques, epic fights, and emotional moments.</p>
-                <button class="btn" onclick="alert('Believe it! 🍥')">Explore Naruto</button>
+                <p>Join Naruto Uzumaki as he trains to become the strongest ninja and Hokage of his village.</p>
+                <button class="btn" onclick="alert('Believe it! 🍥')">Explore</button>
             </div>
         </div>
 
-        <!-- Bleach -->
-        <div class="anime-card floating">
+        <div class="anime-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Bleach_Bleach.png" alt="Bleach">
             <div class="content">
                 <h2>Bleach</h2>
-                <p><strong>Genre:</strong> Supernatural, Action, Adventure</p>
-                <p>Follow Ichigo Kurosaki, a teenager who becomes a Soul Reaper, as he battles evil spirits called Hollows. Bleach mixes supernatural elements with intense battles, deep lore, and a vast world full of unique characters.</p>
-                <button class="btn" onclick="alert('Get ready to wield your Zanpakuto! ⚔️')">Explore Bleach</button>
+                <p>Follow Ichigo Kurosaki, a Soul Reaper, battling evil spirits known as Hollows.</p>
+                <button class="btn" onclick="alert('Prepare your Zanpakuto! ⚔️')">Explore</button>
             </div>
         </div>
-    </div>
 
-    <footer>
-        &copy; 2025 Anime World | Made with 🌸 love for anime fans
-    </footer>
+        <div class="anime-card">
+            <img src="https://upload.wikimedia.org/wikipedia/en/1/17/Dragon_Ball_Z.png" alt="Dragon Ball Z">
+            <div class="content">
+                <h2>Dragon Ball Z</h2>
+                <p>Goku and his friends defend Earth from powerful foes while training to become stronger.</p>
+                <button class="btn" onclick="alert('Kamehameha! 🌌')">Explore</button>
+            </div>
+        </div>
+
+        <div class="anime-card">
+            <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Attack_on_Titan_S1_Key_Visual.jpg" alt="Attack on Titan">
+            <div class="content">
+                <h2>Attack on Titan</h2>
+                <p>Humanity fights for survival against gigantic Titans in a post-apocalyptic world.</p>
+                <button class="btn" onclick="alert('Fight for humanity! 🛡️')">Explore</button>
+            </div>
+        </div>
+
+        <div class="anime-card">
+            <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/My_Hero_Academia_Logo.png" alt="My Hero Academia">
+            <div class="content">
+                <h2>My Hero Academia</h2>
+                <p>Follow Izuku Midoriya as he trains to become a professional hero in a world full of superpowers.</p>
+                <button class="btn" onclick="alert('Plus Ultra! 💥')">Explore</button>
+            </div>
+        </div>
+
+        <!-- Add more anime cards similarly -->
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Anime World | Made with ❤️ for anime fans
+</footer>
+
+<script>
+    // Random floating sparkles
+    for (let i = 0; i < 50; i++) {
+        let sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.top = Math.random() * window.innerHeight + 'px';
+        sparkle.style.left = Math.random() * window.innerWidth + 'px';
+        sparkle.style.width = sparkle.style.height = Math.random() * 5 + 2 + 'px';
+        sparkle.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(sparkle);
+    }
+</script>
+
 </body>
 </html>

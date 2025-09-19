@@ -1,0 +1,54 @@
+pipeline {
+
+    agent any
+    stages {
+        stage('Cloning') {
+            steps {
+                git 'https://github.com/pranavyuvarajr/html-application.git'
+            }
+        }
+
+        stage('Docker Build, Tag and Push') {
+            steps {
+                sh '''
+                    docker build -t public:v$BUILD_NUMBER .
+                    docker tag public:v$BUILD_NUMBER public.ecr.aws/j1o8i8l1/public:v$BUILD_NUMBER
+                    docker push public.ecr.aws/j1o8i8l1/public:v$BUILD_NUMBER
+                '''
+            }
+        }
+        stage('Update New Task Definition') {
+            steps {
+                sh """
+                    jq '.containerDefinitions[0].image = "public.ecr.aws/j1o8i8l1/public:v${BUILD_NUMBER}"' task-def.json > new-task-def.json
+                    mv new-task-def.json task-def.json
+                """
+            }
+        }
+        stage('Register Task Definition') {
+            steps {
+                sh """
+                aws ecs register-task-definition \
+                  --cli-input-json file://task-def.json \
+                  --region ap-south-1
+                """
+            }
+        }
+        stage('Update ECS Service') {
+            steps {
+                sh """
+                aws ecs update-service \
+                  --cluster cluster \
+                  --service task-def-service \
+                  --task-definition task-def \
+                  --region ap-south-1
+                """
+            }
+        }
+        stage('Cleaning up') {
+            steps {
+                sh "docker rmi public:v$BUILD_NUMBER"
+            }
+        }
+    }
+}
