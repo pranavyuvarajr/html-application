@@ -3,124 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Grand Anime World 🌸</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>🌟 The Big 3 Anime 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* Reset & Base */
+        /* Base & Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to top, #ff9a9e, #fad0c4);
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: linear-gradient(to right, #fceabb, #f8b500);
+            color: #333;
             overflow-x: hidden;
         }
-        h1 {
-            font-family: 'Press Start 2P', cursive;
-            color: #fff;
-            text-align: center;
-            font-size: 3rem;
-            margin-top: 2rem;
-            text-shadow: 2px 2px 10px #ff6f91;
-        }
+        h1, h2 { font-family: 'Press Start 2P', cursive; color: #ff3c6e; text-align: center; }
+        h1 { margin: 2rem 0; font-size: 3rem; text-shadow: 2px 2px 8px #ff9a9e; }
+        h2 { margin: 1.5rem 0; font-size: 1.8rem; }
 
-        /* Cloud Animation */
-        .cloud {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: float 60s linear infinite;
-        }
-        .cloud:nth-child(1) { width: 200px; height: 60px; top: 50px; left: -250px; animation-duration: 80s; }
-        .cloud:nth-child(2) { width: 150px; height: 50px; top: 120px; left: -200px; animation-duration: 100s; }
-        .cloud:nth-child(3) { width: 220px; height: 70px; top: 200px; left: -300px; animation-duration: 90s; }
+        /* Container */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-        @keyframes float {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(150vw); }
+        /* Anime Cards */
+        .anime-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Character Sprite */
-        .character {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            animation: bounce 2s infinite;
+        .anime-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-20px); }
+        .anime-card img {
+            width: 300px;
+            border-radius: 15px;
+            margin-right: 2rem;
+            flex-shrink: 0;
         }
-
-        /* Button */
+        .anime-card .content {
+            flex: 1;
+        }
+        .anime-card .content p {
+            margin: 1rem 0;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
         .btn {
-            display: block;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin-top: 1rem;
+            font-size: 1rem;
             color: #fff;
             background: #ff6f91;
             border: none;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .btn:hover {
             background: #ff3c6e;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        /* Sparkle effect */
-        .sparkle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: twinkle 2s infinite;
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: rgba(255,255,255,0.5);
+            border-top: 2px solid #ff6f91;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.8; transform: translateY(0); }
-            50% { opacity: 0; transform: translateY(-20px); }
+        /* Floating Animation */
+        .floating {
+            animation: float 3s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
         }
     </style>
 </head>
 <body>
+    <h1>🌟 The Big 3 Anime 🌟</h1>
+    <div class="container">
+        
+        <!-- One Piece -->
+        <div class="anime-card floating">
+            <img src="https://upload.wikimedia.org/wikipedia/en/6/65/One_Piece_Logo.png" alt="One Piece">
+            <div class="content">
+                <h2>One Piece</h2>
+                <p><strong>Genre:</strong> Adventure, Action, Fantasy</p>
+                <p>Follow Monkey D. Luffy and his Straw Hat Pirates on an epic journey to find the legendary treasure, One Piece, and become the Pirate King. This anime is filled with colorful characters, thrilling battles, and heartwarming friendships.</p>
+                <button class="btn" onclick="alert('Welcome to the Grand Line! 🌊')">Explore One Piece</button>
+            </div>
+        </div>
 
-    <h1>🌸 Welcome to Anime World 🌸</h1>
+        <!-- Naruto -->
+        <div class="anime-card floating">
+            <img src="https://upload.wikimedia.org/wikipedia/en/9/94/Naruto_Uzumaki.png" alt="Naruto">
+            <div class="content">
+                <h2>Naruto</h2>
+                <p><strong>Genre:</strong> Adventure, Ninja, Action</p>
+                <p>Follow Naruto Uzumaki, a young ninja with dreams of becoming the Hokage, as he faces challenges, forms friendships, and battles powerful enemies. The story is rich with ninja techniques, epic fights, and emotional moments.</p>
+                <button class="btn" onclick="alert('Believe it! 🍥')">Explore Naruto</button>
+            </div>
+        </div>
 
-    <!-- Clouds -->
-    <div class="cloud"></div>
-    <div class="cloud"></div>
-    <div class="cloud"></div>
+        <!-- Bleach -->
+        <div class="anime-card floating">
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Bleach_Bleach.png" alt="Bleach">
+            <div class="content">
+                <h2>Bleach</h2>
+                <p><strong>Genre:</strong> Supernatural, Action, Adventure</p>
+                <p>Follow Ichigo Kurosaki, a teenager who becomes a Soul Reaper, as he battles evil spirits called Hollows. Bleach mixes supernatural elements with intense battles, deep lore, and a vast world full of unique characters.</p>
+                <button class="btn" onclick="alert('Get ready to wield your Zanpakuto! ⚔️')">Explore Bleach</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Character -->
-    <img src="https://i.ibb.co/QCb4h5R/anime-character.png" alt="Anime Character" class="character">
-
-    <!-- Button -->
-    <button class="btn" onclick="alert('Welcome to the Anime Realm! 🌸')">Enter the World</button>
-
-    <!-- Sparkles -->
-    <div class="sparkle" style="top:50px; left:20%; animation-delay: 0s;"></div>
-    <div class="sparkle" style="top:150px; left:70%; animation-delay: 1s;"></div>
-    <div class="sparkle" style="top:300px; left:40%; animation-delay: 2s;"></div>
-
-    <script>
-        // Generate random sparkles
-        for (let i = 0; i < 20; i++) {
-            let sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.style.top = Math.random() * window.innerHeight + 'px';
-            sparkle.style.left = Math.random() * window.innerWidth + 'px';
-            sparkle.style.animationDelay = Math.random() * 3 + 's';
-            sparkle.style.width = sparkle.style.height = Math.random() * 5 + 3 + 'px';
-            document.body.appendChild(sparkle);
-        }
-    </script>
+    <footer>
+        &copy; 2025 Anime World | Made with 🌸 love for anime fans
+    </footer>
 </body>
 </html>
